@@ -13,7 +13,9 @@ router.get('/:id', getProduct);
 
 
 // PATCH request for updating a product
-router.patch('/id/:productId', updateProduct);
+router.patch('/:productId', updateProduct);
+
+
 
 // GET route to get all products
 router.get('/', getAllProducts); // New route to get all products

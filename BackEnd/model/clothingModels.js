@@ -1,7 +1,3 @@
-// models/clothingModel.js
-const mongoose = require('mongoose');
-
-// Create a schema for product items
 const clothingSchema = new mongoose.Schema({
     ProductName: {
         type: String,
@@ -39,13 +35,11 @@ const clothingSchema = new mongoose.Schema({
     },
 
     ProfitStatus: {
-        type: Number,
+        type: String, // This might be a string (e.g., 'Profit', 'Loss') based on your use case
         required: true, 
     },
 
-    
-}, { timestamps: true });  // Timestamps will add 'createdAt' and 'updatedAt' automatically
-
+}, { timestamps: true });
 
 const productSchema = new mongoose.Schema({
     ProductName: { type: String, required: true },

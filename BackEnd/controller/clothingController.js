@@ -44,6 +44,8 @@ const getProduct = async (req, res) => {
         res.status(500).json({ message: 'Error fetching product', error: error.message });
     }
 };
+
+// Update product
 const updateProduct = async (req, res) => {
     const { productId } = req.params; // Get productId from URL parameter
     const { ProductName, UnitInvestment, UnitPrice, QuantityinHand, QuantityinSold, TotalInvestment, TotalSale, ProfitStatus } = req.body;
@@ -59,7 +61,7 @@ const updateProduct = async (req, res) => {
 
         // Update the product
         const product = await Product.findByIdAndUpdate(
-            productId,
+            productId,  // Use productId to identify the product
             { ProductName, UnitInvestment, UnitPrice, QuantityinHand, QuantityinSold, TotalInvestment, TotalSale, ProfitStatus },
             { new: true } // Return the updated product
         );
@@ -68,10 +70,10 @@ const updateProduct = async (req, res) => {
             return res.status(404).json({ error: 'Product not found' });
         }
 
-        res.status(200).json(product);
+        res.status(200).json(product); // Send the updated product as the response
     } catch (error) {
-        console.error('Error updating product:', error); // Log the error
-        res.status(500).json({ error: error.message });
+        console.error('Error updating product:', error); // Log the error for debugging
+        res.status(500).json({ error: error.message }); // Send a 500 error if something goes wrong
     }
 };
 
