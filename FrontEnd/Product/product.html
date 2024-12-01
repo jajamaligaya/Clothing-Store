@@ -82,69 +82,6 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="productForm">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="productName" class="form-label text-dark">Product Name</label>
-                                            <input type="text" class="form-control" id="productName" required />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="unitInvestment" class="form-label text-dark">Unit Investment</label>
-                                            <input type="number" class="form-control" id="unitInvestment" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="unitPrice" class="form-label text-dark">Unit Price</label>
-                                            <input type="number" class="form-control" id="unitPrice" required />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="quantityInHand" class="form-label text-dark">Quantity in Hand</label>
-                                            <input type="number" class="form-control" id="quantityInHand" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="quantitySold" class="form-label text-dark">Quantity Sold</label>
-                                            <input type="number" class="form-control" id="quantitySold" required />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="totalInvestment" class="form-label text-dark">Total Investment</label>
-                                            <input type="number" class="form-control" id="totalInvestment" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="totalsale" class="form-label text-dark">Total Sale</label>
-                                            <input type="number" class="form-control" id="totalsale" required />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="profitstatus" class="form-label text-dark">Profit Status</label>
-                                            <input type="number" class="form-control" id="profitstatus" required />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="saveProductBtn">Save Product</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -204,17 +141,126 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">Edit Product</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="productForm">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="productName" class="form-label text-dark">Product Name</label>
+                                            <input type="text" class="form-control" id="productName" required />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="unitInvestment" class="form-label text-dark">Unit Investment</label>
+                                            <input type="number" class="form-control" id="unitInvestment" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="unitPrice" class="form-label text-dark">Unit Price</label>
+                                            <input type="number" class="form-control" id="unitPrice" required />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="quantityInHand" class="form-label text-dark">Quantity in Hand</label>
+                                            <input type="number" class="form-control" id="quantityInHand" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="quantitySold" class="form-label text-dark">Quantity Sold</label>
+                                            <input type="number" class="form-control" id="quantitySold" required />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="totalInvestment" class="form-label text-dark">Total Investment</label>
+                                            <input type="number" class="form-control" id="totalInvestment" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="totalsale" class="form-label text-dark">Total Sale</label>
+                                            <input type="number" class="form-control" id="totalsale" required />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="profitstatus" class="form-label text-dark">Profit Status</label>
+                                            <input type="number" class="form-control" id="profitstatus" required />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="saveProductBtn">Save Product</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
             </div>
         </div>
     </div>
 
-     <!-- Modal (Edit Product) -->
-                
+<!-- Modal -->
+<div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="editProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductLabel">Update Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateProductForm">
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitInvestment" class="form-label">Unit Investment</label>
+                        <input type="number" class="form-control" id="unitInvestment" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitPrice" class="form-label">Unit Price</label>
+                        <input type="number" class="form-control" id="unitPrice" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantityInHand" class="form-label">Quantity in Hand</label>
+                        <input type="number" class="form-control" id="quantityInHand" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantitySold" class="form-label">Quantity Sold</label>
+                        <input type="number" class="form-control" id="quantitySold" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalInvestment" class="form-label">Total Investment</label>
+                        <input type="number" class="form-control" id="totalInvestment" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalsale" class="form-label">Total Sale</label>
+                        <input type="number" class="form-control" id="totalsale" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="profitstatus" class="form-label">Profit Status</label>
+                        <select class="form-control" id="profitstatus">
+                            <option value="Profit">Profit</option>
+                            <option value="Loss">Loss</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="saveProductBtn">Save Changes</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <td>${product.QuantityinSold}</td>
                                 <td>${product.TotalInvestment}</td>
                                 <td>${product.TotalSale}</td>
-                                <td>${product.ProfitStatus}</td>
+                                <td>${product.ProfitStatus}</td>    
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-edit" data-product-id="${product._id}" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" class="btn btn-primary btn-edit" data-product-id="${product._id}" data-toggle="modal" data-target="#editModal">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
                                 </td>
@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('Error fetching products:', error);
                 });
 
+                
+
             // Handle edit button click to populate modal with product data
             document.getElementById('productTableBody').addEventListener('click', function(event) {
                 if (event.target && event.target.classList.contains('btn-edit')) {
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     // Fetch product details based on product ID
-                    fetch(`http://localhost:4000/api/clothings/${productId}`)
+                    fetch(`http://localhost:4000/api/clothings/id/${productId}`)
                         .then(response => response.json())
                         .then(data => {
                             const product = data.product;
@@ -114,12 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <td>${updatedData.TotalSale}</td>
                                             <td>${updatedData.ProfitStatus}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-edit" data-product-id="${updatedData._id}" data-toggle="modal" data-target="#exampleModal">
+                                                <button type="button" class="btn btn-primary btn-edit" data-product-id="${updatedData._id}" data-toggle="modal" data-target="#editProduct">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </button>
                                             </td>
                                         `;
-                                        $('#exampleModal').modal('hide'); // Hide the modal
+                                        $('#editProduct').modal('hide'); // Hide the modal
                                     })
                                     .catch(error => {
                                         console.error('Error updating product:', error);
@@ -158,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 // Send POST request to create new product
-                fetch('http://localhost:4000/api/clothings/', {
+                fetch('http://localhost:4000/api/clothings/new', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -180,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${data.TotalSale}</td>
                         <td>${data.ProfitStatus}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-edit" data-product-id="${data._id}" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-primary btn-edit" data-product-id="${data._id}" data-toggle="modal" data-target="#addProductModal">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
                         </td>
