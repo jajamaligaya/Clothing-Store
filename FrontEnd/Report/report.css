@@ -25,7 +25,7 @@
 
 /* Sidebar Styling */
 .sidebar {
-  background: linear-gradient(to bottom, #1E3A5F, #283C5C); /* Dark blue gradient for sidebar */
+  background: linear-gradient(to bottom, #1E3A5F, #283C5C); 
   position: fixed;
   top: 56px; /* Positioned below the first navbar */
   left: 0;
@@ -33,7 +33,7 @@
   height: calc(100vh - 56px); /* Full height minus the height of the first navbar */
   z-index: 0;
   padding-top: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
@@ -55,20 +55,20 @@
 }
 
 .sidebar ul li a {
-  color: #fff; /* White text for better contrast */
-  background-color: #1E3A5F; /* Dark blue background */
+  color: #fff; 
+  background-color: #1E3A5F; 
   text-decoration: none;
   display: block;
   font-weight: 500;
 }
 
 .sidebar ul li a:hover {
-  background-color: #506C9E; /* Lighter blue on hover */
+  background-color: #506C9E; 
   color: #fff;
 }
 
 .sidebar ul li a.active {
-  background-color: #506C9E; /* Highlight active item */
+  background-color: #506C9E; /*
   color: white;
 }
   
@@ -77,9 +77,9 @@
     position: sticky;
     top: 0; /* Fixed at the top */
     width: 100%;
-    background-color: #2B4024; /* Dark background for first navbar */
+    background-color: #2B4024; 
     color: #fff;
-    z-index: 900; /* Ensures it's above other content */
+    z-index: 900;
     padding: 10px 20px;
   }
   
@@ -151,33 +151,30 @@
   
   /* Ensure modal dialog is properly sized and centered */
   .modal-dialog {
-    max-width: 500px;  /* Control the maximum width of the modal */
-    width: 150%;       /* Make it responsive */
-    margin: 30px auto; /* Center the modal */
+    max-width: 500px;  
+    width: 150%;       
+    margin: 30px auto; 
   }
   
   .modal-content {
-    border-radius: 5px;  /* Optional: Adds rounded corners for better visual appearance */
+    border-radius: 5px;  
   }
   
   /* Ensure modal body has scrolling if needed */
   .modal-body {
     padding: 20px;
-    max-height: 80vh;  /* Restrict modal height to 80% of the viewport height */
-    overflow-y: auto;  /* Allow vertical scrolling if the content is too tall */
+    max-height: 80vh; 
+    overflow-y: auto;  
   }
   
-  /* Ensure that the modal backdrop stays behind the modal */
   .modal-backdrop.show {
-    z-index: 1040;  /* Ensure backdrop is under the modal */
+    z-index: 1040;  
   }
   
-  /* Ensure the modal has higher stacking order */
   .modal {
-    z-index: 1050;  /* Higher than other elements */
+    z-index: 1050; 
   }
   
-  /* On small screens, make the modal width 90% */
   @media (max-width: 576px) {
     .modal-dialog {
         width: 90%;
@@ -185,9 +182,9 @@
     }
   }
   
-  /* For the Add Expenses section to show fully on click */
+ 
   #add-expenses-modal {
-    display: block; /* Show the modal when clicked */
+    display: block; 
   }
   
   /* Button hover and animation */
@@ -254,4 +251,234 @@
   #expenses-table .expense-delete:hover {
     color: #ff6347;
   }
+  /* Summary Table Styling */
+#summaryTable {
+  width: 70%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: 20%;
+}
+
+#summaryTable th,
+#summaryTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.col-md-12 mt-4, h4{
+  margin-left: 20%;
+}
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #F5F5F5;
+  color: #1E3A5F;
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+h2, h4 {
+  color: #1E3A5F;
+  font-weight: 600;
+}
+
+.table {
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.table th, .table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.table thead {
+  background-color: #1E3A5F;
+  color: #ffffff;
+}
+
+.table tfoot {
+  font-weight: bold;
+}
+
+.table-bordered {
+  border: 1px solid #ddd;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #ddd;
+}
+
+thead th {
+  background-color: #1E3A5F;
+  color: #ffffff;
+}
+
+/* Filter Section */
+.filter-bar {
+  background-color: #1E3A5F;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.filter-bar label {
+  margin-right: 10px;
+}
+
+.filter-bar select, .filter-bar input {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.filter-bar button {
+  background-color: #ffc107;
+  color: #1E3A5F;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.filter-bar button:hover {
+  background-color: #e0a800;
+}
+
+/* Modal Styles */
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #1E3A5F;
+  color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-footer {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.btn-primary {
+  background-color: #1E3A5F;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #17478f;
+}
+
+.btn-edit, .btn-delete {
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete {
+  background-color: #e8838d;
+  color: #ffffff;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Additional Styling */
+.float-right {
+  margin-top: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+      padding: 15px;
+  }
   
+  .table th, .table td {
+      padding: 8px;
+  }
+  
+  .modal-content {
+      border-radius: 8px;
+  }
+}
+#summaryTable th {
+  background-color: #1E3A5F; 
+  color: #ffffff; 
+  text-transform: uppercase; 
+  padding: 12px 15px;
+}
+
+#summaryTable td {
+  padding: 10px 15px;
+  text-align: center;
+  color: #333; 
+  border-bottom: 1px solid #e0e0e0; 
+}
+
+/* Styling for the last row (summary) */
+#summaryTable tr:last-child td {
+  font-weight: bold;
+  background-color: #f7f7f7; 
+  border-top: 2px solid #1E3A5F; 
+}
+
+/* Hover Effect */
+#summaryTable tr:hover {
+  background-color: #f1f1f1; 
+  cursor: pointer; 
+}
+
+/* Highlighting cells with data */
+#summaryTable td#summaryTotalInvestment {
+  color: #ffc107; /* Highlight investment  */
+}
+
+#summaryTable td#summaryTotalExpenses {
+  color: #e53935; /*  total expenses */
+}
+
+#summaryTable td#summaryTotalSales {
+  color: #2e7d32; /* Green for profit */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #summaryTable th, #summaryTable td {
+      padding: 8px 10px;
+  }
+}
