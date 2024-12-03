@@ -10,6 +10,8 @@ const cors = require('cors');
 const salesRoutes = require('./routes/sale');
 
 
+
+
 const app = express();
 app.use(cors());
 
