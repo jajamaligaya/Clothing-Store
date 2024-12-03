@@ -25,7 +25,7 @@
 
 /* Sidebar Styling */
 .sidebar {
-  background: linear-gradient(to bottom, #1E3A5F, #283C5C); 
+  background: linear-gradient(to bottom, #1E3A5F, #283C5C); /* Dark blue gradient for sidebar */
   position: fixed;
   top: 56px; /* Positioned below the first navbar */
   left: 0;
@@ -33,7 +33,7 @@
   height: calc(100vh - 56px); /* Full height minus the height of the first navbar */
   z-index: 0;
   padding-top: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
   overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
@@ -55,20 +55,20 @@
 }
 
 .sidebar ul li a {
-  color: #fff; 
-  background-color: #1E3A5F; 
+  color: #fff; /* White text for better contrast */
+  background-color: #1E3A5F; /* Dark blue background */
   text-decoration: none;
   display: block;
   font-weight: 500;
 }
 
 .sidebar ul li a:hover {
-  background-color: #506C9E; 
+  background-color: #506C9E; /* Lighter blue on hover */
   color: #fff;
 }
 
 .sidebar ul li a.active {
-  background-color: #506C9E; /*
+  background-color: #506C9E; /* Highlight active item */
   color: white;
 }
   
@@ -77,7 +77,7 @@
     position: sticky;
     top: 0; /* Fixed at the top */
     width: 100%;
-    background-color: #2B4024; 
+    background-color: #2B4024; /* Dark background for first navbar */
     color: #fff;
     z-index: 900;
     padding: 10px 20px;
