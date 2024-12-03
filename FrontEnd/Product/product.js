@@ -195,3 +195,119 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reference input fields
+            const unitPriceInput = document.getElementById('unitPrice');
+            const quantitySoldInput = document.getElementById('quantitySold');
+            const totalSaleInput = document.getElementById('totalsale');
+        
+            // Add event listeners to calculate Total Sale dynamically
+            function calculateTotalSale() {
+                const unitPrice = parseFloat(unitPriceInput.value) || 0;
+                const quantitySold = parseInt(quantitySoldInput.value) || 0;
+                const totalSale = unitPrice * quantitySold;
+        
+                totalSaleInput.value = totalSale.toFixed(2); // Format to 2 decimal places
+            }
+        
+            // Trigger calculation on input change
+            unitPriceInput.addEventListener('input', calculateTotalSale);
+            quantitySoldInput.addEventListener('input', calculateTotalSale);
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reference input fields for Total Sale
+            const unitPriceInput = document.getElementById('unitPrice');
+            const quantitySoldInput = document.getElementById('quantitySold');
+            const totalSaleInput = document.getElementById('totalsale');
+        
+            // Reference input fields for Total Investment
+            const unitInvestmentInput = document.getElementById('unitInvestment');
+            const totalInvestmentInput = document.getElementById('totalInvestment');
+        
+            // Add event listeners to calculate Total Sale dynamically
+            function calculateTotalSale() {
+                const unitPrice = parseFloat(unitPriceInput.value) || 0;
+                const quantitySold = parseInt(quantitySoldInput.value) || 0;
+                const totalSale = unitPrice * quantitySold;
+        
+                totalSaleInput.value = totalSale.toFixed(2); // Format to 2 decimal places
+            }
+        
+            // Add event listeners to calculate Total Investment dynamically
+            function calculateTotalInvestment() {
+                const unitInvestment = parseFloat(unitInvestmentInput.value) || 0;
+                const quantitySold = parseInt(quantitySoldInput.value) || 0;
+                const totalInvestment = unitInvestment * quantitySold;
+        
+                totalInvestmentInput.value = totalInvestment.toFixed(2); // Format to 2 decimal places
+            }
+        
+            // Trigger calculation for Total Sale
+            unitPriceInput.addEventListener('input', calculateTotalSale);
+            quantitySoldInput.addEventListener('input', calculateTotalSale);
+        
+            // Trigger calculation for Total Investment
+            unitInvestmentInput.addEventListener('input', calculateTotalInvestment);
+            quantitySoldInput.addEventListener('input', calculateTotalInvestment);
+        });
+   document.addEventListener('DOMContentLoaded', function() {
+    // Reference input fields for Total Sale
+    const unitPriceInput = document.getElementById('unitPrice');
+    const quantitySoldInput = document.getElementById('quantitySold');
+    const totalSaleInput = document.getElementById('totalsale');
+
+    // Reference input fields for Total Investment
+    const unitInvestmentInput = document.getElementById('unitInvestment');
+    const totalInvestmentInput = document.getElementById('totalInvestment');
+
+    // Reference input field for Profit Status
+    const profitStatusInput = document.getElementById('profitStatus');
+
+    // Calculate Total Sale
+    function calculateTotalSale() {
+        const unitPrice = parseFloat(unitPriceInput.value) || 0;
+        const quantitySold = parseInt(quantitySoldInput.value) || 0;
+        const totalSale = unitPrice * quantitySold;
+
+        totalSaleInput.value = totalSale.toFixed(2); // Format to 2 decimal places
+        calculateProfitStatus(); // Update profit status
+    }
+
+    // Calculate Total Investment
+    function calculateTotalInvestment() {
+        const unitInvestment = parseFloat(unitInvestmentInput.value) || 0;
+        const quantitySold = parseInt(quantitySoldInput.value) || 0;
+        const totalInvestment = unitInvestment * quantitySold;
+
+        totalInvestmentInput.value = totalInvestment.toFixed(2); // Format to 2 decimal places
+        calculateProfitStatus(); // Update profit status
+    }
+
+    // Calculate Profit Status
+    function calculateProfitStatus() {
+        const totalSale = parseFloat(totalSaleInput.value) || 0;
+        const totalInvestment = parseFloat(totalInvestmentInput.value) || 0;
+        const profit = totalSale - totalInvestment;
+
+        // Determine Profit Status
+        if (profit > 0) {
+            profitStatusInput.value = `Profit: ${profit.toFixed(2)}`;
+            profitStatusInput.style.color = 'green'; // Optional: indicate profit with color
+        } else if (profit < 0) {
+            profitStatusInput.value = `Loss: ${Math.abs(profit).toFixed(2)}`;
+            profitStatusInput.style.color = 'red'; // Optional: indicate loss with color
+        } else {
+            profitStatusInput.value = 'Break-Even';
+            profitStatusInput.style.color = 'black'; // Neutral color for break-even
+        }
+    }
+
+    // Add event listeners to trigger calculations
+    unitPriceInput.addEventListener('input', calculateTotalSale);
+    quantitySoldInput.addEventListener('input', () => {
+        calculateTotalSale();
+        calculateTotalInvestment();
+    });
+    unitInvestmentInput.addEventListener('input', calculateTotalInvestment);
+});
+             
