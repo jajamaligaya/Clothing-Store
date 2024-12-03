@@ -266,7 +266,7 @@ td.quantity-in-hand {
 
 /* Optional: Alternate using nth-child for structural styling */
 td:nth-child(4) {
-    background-color: #ee1010; /* Light Green */
+    background-color: #e2ded4; /* Light Green */
 }
 
 

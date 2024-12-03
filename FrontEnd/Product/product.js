@@ -34,108 +34,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 
 
-            // Handle edit button click to populate modal with product data
-            document.getElementById('productTableBody').addEventListener('click', function(event) {
-                if (event.target && event.target.classList.contains('btn-edit')) {
-                    const productId = event.target.getAttribute('data-product-id');
-                    const modal = document.getElementById('exampleModal');
-
-                    // Ensure modal is available before continuing
-                    if (!modal) {
-                        console.error('Modal not found');
-                        return;
-                    }
-
-                    // Fetch product details based on product ID
-                    fetch(`http://localhost:4000/api/clothings/id/${productId}`)
-                        .then(response => response.json())
-                        .then(data => {
+                document.addEventListener('DOMContentLoaded', function () {
+                    const productTableBody = document.getElementById('productTableBody');
+                    const modal = document.getElementById('editProduct');
+                  
+                    // Handle edit button click
+                    productTableBody.addEventListener('click', function (event) {
+                      if (event.target && event.target.classList.contains('btn-edit')) {
+                        const productId = event.target.getAttribute('data-product-id');
+                  
+                        // Fetch product details from the server
+                        fetch(`http://localhost:4000/api/clothings/${productId}`)
+                          .then((response) => response.json())
+                          .then((data) => {
                             const product = data.product;
-
-                            // Ensure modal elements are available before populating
-                            const productNameInput = document.getElementById('productName');
-                            const unitInvestmentInput = document.getElementById('unitInvestment');
-                            const unitPriceInput = document.getElementById('unitPrice');
-                            const quantityInHandInput = document.getElementById('quantityInHand');
-                            const quantitySoldInput = document.getElementById('quantitySold');
-                            const totalInvestmentInput = document.getElementById('totalInvestment');
-                            const totalsaleInput = document.getElementById('totalsale');
-                            const profitstatusInput = document.getElementById('profitstatus');
-
-                            // Check if all inputs are found
-                            if (productNameInput && unitInvestmentInput && unitPriceInput && quantityInHandInput && quantitySoldInput && totalInvestmentInput && totalsaleInput && profitstatusInput) {
-                                // Populate the modal form with the product data
-                                productNameInput.value = product.ProductName;
-                                unitInvestmentInput.value = product.UnitInvestment;
-                                unitPriceInput.value = product.UnitPrice;
-                                quantityInHandInput.value = product.QuantityinHand;
-                                quantitySoldInput.value = product.QuantityinSold;
-                                totalInvestmentInput.value = product.TotalInvestment;
-                                totalsaleInput.value = product.TotalSale;
-                                profitstatusInput.value = product.ProfitStatus;
-                            } else {
-                                console.error('Modal form elements are missing.');
-                            }
-
-                            // Set the form to update the existing product
-                            const updateButton = modal.querySelector('.btn-primary');
-                            if (updateButton) {
-                                updateButton.onclick = function() {
-                                    // Prepare updated product data
-                                    const updatedProduct = {
-                                        ProductName: productNameInput.value,
-                                        UnitInvestment: unitInvestmentInput.value,
-                                        UnitPrice: unitPriceInput.value,
-                                        QuantityinHand: quantityInHandInput.value,
-                                        QuantityinSold: quantitySoldInput.value,
-                                        TotalInvestment: totalInvestmentInput.value,
-                                        TotalSale: totalsaleInput.value,
-                                        ProfitStatus: profitstatusInput.value
-                                    };
-
-                                    // Send a PATCH request to update the product
-                                    fetch(`http://localhost:4000/api/clothings/id/${productId}`, {
-                                        method: 'PATCH',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify(updatedProduct)  // Ensure all necessary fields are included
-                                    })
-
-                                    .then(response => response.json())
-                                    .then(updatedData => {
-                                        // Update the table row with the updated product data
-                                        const row = document.querySelector(`[data-product-id="${productId}"]`).closest('tr');
-                                        row.innerHTML = `
-                                            <th scope="row">${updatedData.ProductName}</th>
-                                            <td>${updatedData.UnitInvestment}</td>
-                                            <td>${updatedData.UnitPrice}</td>
-                                            <td>${updatedData.QuantityinHand}</td>
-                                            <td>${updatedData.QuantityinSold}</td>
-                                            <td>${updatedData.TotalInvestment}</td>
-                                            <td>${updatedData.TotalSale}</td>
-                                            <td>${updatedData.ProfitStatus}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-edit" data-product-id="${updatedData._id}" data-toggle="modal" data-target="#editProduct">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                                            </td>
-                                        `;
-                                        $('#editProduct').modal('hide'); // Hide the modal
-                                    })
-                                    .catch(error => {
-                                        console.error('Error updating product:', error);
-                                    });
-                                };
-                            } else {
-                                console.error('Update button not found');
-                            }
-                        })
-                        .catch(error => {
+                  
+                            // Populate modal form fields
+                            modal.querySelector('#productName').value = product.ProductName;
+                            modal.querySelector('#unitInvestment').value = product.UnitInvestment;
+                            modal.querySelector('#unitPrice').value = product.UnitPrice;
+                            modal.querySelector('#quantityInHand').value = product.QuantityinHand;
+                            modal.querySelector('#quantitySold').value = product.QuantityinSold;
+                            modal.querySelector('#totalInvestment').value = product.TotalInvestment;
+                            modal.querySelector('#totalsale').value = product.TotalSale;
+                            modal.querySelector('#profitstatus').value = product.ProfitStatus;
+                  
+                            // Attach click handler to "Save Changes" button
+                            const saveChangesBtn = modal.querySelector('#saveChangesBtn');
+                            saveChangesBtn.onclick = function () {
+                              const updatedProduct = {
+                                ProductName: modal.querySelector('#productName').value,
+                                UnitInvestment: modal.querySelector('#unitInvestment').value,
+                                UnitPrice: modal.querySelector('#unitPrice').value,
+                                QuantityinHand: modal.querySelector('#quantityInHand').value,
+                                QuantityinSold: modal.querySelector('#quantitySold').value,
+                                TotalInvestment: modal.querySelector('#totalInvestment').value,
+                                TotalSale: modal.querySelector('#totalsale').value,
+                                ProfitStatus: modal.querySelector('#profitstatus').value,
+                              };
+                  
+                              // Send updated data to the server
+                              fetch(`http://localhost:4000/api/clothings/${productId}`, {
+                                method: 'PATCH',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(updatedProduct),
+                              })
+                                .then((response) => response.json())
+                                .then((updatedData) => {
+                                  // Update the corresponding row in the table
+                                  const row = document.querySelector(`[data-product-id="${productId}"]`).closest('tr');
+                                  row.innerHTML = `
+                                    <th scope="row">${updatedData.ProductName}</th>
+                                    <td>${updatedData.UnitInvestment}</td>
+                                    <td>${updatedData.UnitPrice}</td>
+                                    <td>${updatedData.QuantityinHand}</td>
+                                    <td>${updatedData.QuantityinSold}</td>
+                                    <td>${updatedData.TotalInvestment}</td>
+                                    <td>${updatedData.TotalSale}</td>
+                                    <td>${updatedData.ProfitStatus}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-edit" data-product-id="${updatedData._id}" data-toggle="modal" data-target="#editProduct">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </td>
+                                  `;
+                                  // Close the modal
+                                  const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                                  bootstrapModal.hide();
+                                })
+                                .catch((error) => {
+                                  console.error('Error updating product:', error);
+                                });
+                            };
+                          })
+                          .catch((error) => {
                             console.error('Error fetching product details:', error);
-                        });
-                }
-            });
+                          });
+                  
+                        // Show the modal
+                        const bootstrapModal = new bootstrap.Modal(modal);
+                        bootstrapModal.show();
+                      }
+                    });
+                  });
+                  
 
             // Handle add product button click
             document.getElementById('saveProductBtn').addEventListener('click', function() {

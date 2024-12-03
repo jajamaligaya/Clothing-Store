@@ -62,7 +62,7 @@ body, html {
 
 .main-container {
   margin-left: 300px; /* Offset the content to make room for the sidebar */
-  padding-top: 120px; /* Adjust for both navbars height */
+  padding-top: 40px; /* Adjust for both navbars height */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -138,7 +138,7 @@ body, html {
 
 /* Table Styles */
 .table-responsive {
-  width: 115%; /* Ensure the table takes up full width of its container */
+  width: 115%; 
   max-width: none; /* Remove any max-width constraints */
   margin-top: 1rem; /* Add slight space for alignment */
 }
