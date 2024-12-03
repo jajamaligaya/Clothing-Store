@@ -1,131 +1,168 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const filterBtn = document.getElementById("filterBtn");
-    const productTable = document.getElementById("productTable").getElementsByTagName("tbody")[0];
-    const expensesTable = document.getElementById("expensesTable").getElementsByTagName("tbody")[0];
-    const totalInvestmentCell = document.getElementById("totalInvestment");
-    const totalSalesCell = document.getElementById("totalSales");
-    const totalProfitCell = document.getElementById("totalProfit");
+// JavaScript logic for modal handling, table updates, etc.
 
-    // Calculate total investment, sales, and profit
-    const calculateTotals = () => {
-        let totalInvestment = 0;
-        let totalSales = 0;
-        let totalProfit = 0;
+// Sample logic for handling filter application
+document.getElementById('applyFiltersBtn').addEventListener('click', function() {
+    const month = document.getElementById('modalFilterMonth').value;
+    const year = document.getElementById('modalFilterYear').value;
 
-        // Calculate totals from Product Table
-        Array.from(productTable.rows).forEach(row => {
-            const investment = parseFloat(row.cells[2].textContent);
-            const sales = parseFloat(row.cells[3].textContent);
-            const profit = parseFloat(row.cells[4].textContent);
+    console.log(`Filters applied: Month - ${month}, Year - ${year}`);
+    $('#filterModal').modal('hide');
+});
 
-            totalInvestment += investment;
-            totalSales += sales;
-            totalProfit += profit;
-        });
+// Add Expense Form Submission Logic
+document.getElementById('addExpenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const expenseType = document.getElementById('expenseType').value;
+    const expenseAmount = document.getElementById('expenseAmount').value;
 
-        // Update summary table
-        totalInvestmentCell.textContent = totalInvestment.toFixed(2);
-        totalSalesCell.textContent = totalSales.toFixed(2);
-        totalProfitCell.textContent = totalProfit.toFixed(2);
-    };
+    if (expenseType && expenseAmount) {
+        const table = document.getElementById('expensesTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${expenseType}</td>
+            <td>${expenseAmount}</td>
+            <td>
+                <button class="btn btn-sm btn-edit" style="color: green;" data-toggle="modal" data-target="#editExpenseModal">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-delete" style="color: red;">
+                    <i class="bi bi-trash3"></i> Delete
+                </button>
+            </td>
+        `;
 
-    // Filter function
-    const applyFilters = () => {
-        const monthFilter = document.getElementById("filterMonth").value;
-        const yearFilter = document.getElementById("filterYear").value.trim();
+        // Clear the form fields
+        document.getElementById('expenseType').value = '';
+        document.getElementById('expenseAmount').value = '';
+        $('#addExpenseModal').modal('hide');
+    }
+});
 
-        Array.from(productTable.rows).forEach(row => {
-            const isMonthMatch = monthFilter === "All" || row.dataset.month === monthFilter;
-            const isYearMatch = !yearFilter || row.dataset.year === yearFilter;
+// Edit Expense Form Logic
+document.getElementById('editExpenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Implement logic for saving changes
+});
+// JavaScript logic for modal handling, table updates, etc.
 
-            row.style.display = isMonthMatch && isYearMatch ? "" : "none";
-        });
+// Sample logic for handling filter application
+document.getElementById('applyFiltersBtn').addEventListener('click', function() {
+    const month = document.getElementById('modalFilterMonth').value;
+    const year = document.getElementById('modalFilterYear').value;
 
-        Array.from(expensesTable.rows).forEach(row => {
-            const isMonthMatch = monthFilter === "All" || row.dataset.month === monthFilter;
-            const isYearMatch = !yearFilter || row.dataset.year === yearFilter;
+    console.log(`Filters applied: Month - ${month}, Year - ${year}`);
+    $('#filterModal').modal('hide');
+});
 
-            row.style.display = isMonthMatch && isYearMatch ? "" : "none";
-        });
+// Add Expense Form Submission Logic
+document.getElementById('addExpenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const expenseType = document.getElementById('expenseType').value;
+    const expenseAmount = document.getElementById('expenseAmount').value;
 
-        calculateTotals();
-    };
+    if (expenseType && expenseAmount) {
+        const table = document.getElementById('expensesTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${expenseType}</td>
+            <td>${expenseAmount}</td>
+            <td>
+                <button class="btn btn-sm btn-edit" style="color: green;" data-toggle="modal" data-target="#editExpenseModal">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-delete" style="color: red;">
+                    <i class="bi bi-trash3"></i> Delete
+                </button>
+            </td>
+        `;
 
-    // Add event listener for the filter button
-    filterBtn.addEventListener("click", applyFilters);
+        // Clear the form fields
+        document.getElementById('expenseType').value = '';
+        document.getElementById('expenseAmount').value = '';
+        $('#addExpenseModal').modal('hide');
+    }
+});
 
-    // Selectors for expense management
-    const addExpenseBtn = document.getElementById("addExpenseBtn"); // Button to show modal
-    const expenseModal = document.getElementById("expenseModal"); // Modal for adding/editing expenses
-    const expenseForm = document.getElementById("expenseForm"); // Expense form in the modal
-    const saveExpenseBtn = document.getElementById("saveExpenseBtn"); // Save button in modal
-    let editingExpenseId = null; // Track currently editing expense
-
-    // Open modal for adding a new expense
-    addExpenseBtn.addEventListener("click", () => {
-        editingExpenseId = null; // Clear any existing editing context
-        expenseForm.reset(); // Reset the form
-        expenseModal.style.display = "block"; // Show modal
-    });
-
-    // Save or Edit Expense
-    saveExpenseBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        const formData = new FormData(expenseForm);
-        const expense = {
-            name: formData.get("expenseName"),
-            amount: parseFloat(formData.get("expenseAmount")),
-            date: formData.get("expenseDate"),
-        };
-
-        if (editingExpenseId !== null) {
-            // Edit existing expense
-            const row = document.querySelector(`[data-id="${editingExpenseId}"]`);
-            row.querySelector(".expense-name").textContent = expense.name;
-            row.querySelector(".expense-amount").textContent = `₱${expense.amount.toFixed(2)}`;
-            row.querySelector(".expense-date").textContent = expense.date;
-        } else {
-            // Add new expense
-            const id = Date.now(); // Unique ID
-            expensesTable.innerHTML += `
-                <tr data-id="${id}">
-                    <td class="expense-name">${expense.name}</td>
-                    <td class="expense-amount">₱${expense.amount.toFixed(2)}</td>
-                    <td class="expense-date">${expense.date}</td>
-                    <td>
-                        <button class="edit-expense btn btn-warning" data-id="${id}">Edit</button>
-                        <button class="delete-expense btn btn-danger" data-id="${id}">Delete</button>
-                    </td>
-                </tr>`;
+// Delete Button Logic
+document.querySelector('#expensesTable').addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-delete')) {
+        const row = event.target.closest('tr');
+        if (row) {
+            row.remove();
         }
+    }
+});
 
-        expenseModal.style.display = "none"; // Hide modal
-    });
+// Edit Expense Form Logic
+document.getElementById('editExpenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Implement logic for saving changes
+});
+// JavaScript logic for modal handling, table updates, etc.
 
-    // Edit existing expense
-    expensesTable.addEventListener("click", (event) => {
-        if (event.target.classList.contains("edit-expense")) {
-            const id = event.target.getAttribute("data-id");
-            editingExpenseId = id;
+// Add Expense Form Submission Logic
+document.getElementById('addExpenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const expenseType = document.getElementById('expenseType').value;
+    const expenseAmount = document.getElementById('expenseAmount').value;
 
-            const row = document.querySelector(`[data-id="${id}"]`);
-            const name = row.querySelector(".expense-name").textContent;
-            const amount = row.querySelector(".expense-amount").textContent.replace("₱", "");
-            const date = row.querySelector(".expense-date").textContent;
+    if (expenseType && expenseAmount) {
+        const table = document.getElementById('expensesTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${expenseType}</td>
+            <td>${expenseAmount}</td>
+            <td>
+                <button class="btn btn-sm btn-edit" style="color: green;" data-toggle="modal" data-target="#editExpenseModal">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-delete" style="color: red;">
+                    <i class="bi bi-trash3"></i> Delete
+                </button>
+            </td>
+        `;
 
-            expenseForm.elements["expenseName"].value = name;
-            expenseForm.elements["expenseAmount"].value = parseFloat(amount);
-            expenseForm.elements["expenseDate"].value = date;
+        // Clear the form fields
+        document.getElementById('expenseType').value = '';
+        document.getElementById('expenseAmount').value = '';
+        $('#addExpenseModal').modal('hide');
+    }
+});
 
-            expenseModal.style.display = "block"; // Show modal with data pre-filled
+// Edit Expense Logic
+let currentRow = null;
+
+document.querySelector('#expensesTable').addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-edit')) {
+        currentRow = event.target.closest('tr');
+        if (currentRow) {
+            const cells = currentRow.getElementsByTagName('td');
+            document.getElementById('editExpenseType').value = cells[0].textContent;
+            document.getElementById('editExpenseAmount').value = cells[1].textContent;
+            $('#editExpenseModal').modal('show');
         }
-    });
+    }
 
-    // Delete expense
-    expensesTable.addEventListener("click", (event) => {
-        if (event.target.classList.contains("delete-expense")) {
-            const id = event.target.getAttribute("data-id");
-            document.querySelector(`[data-id="${id}"]`).remove(); // Remove the row
+    if (event.target.classList.contains('btn-delete')) {
+        const row = event.target.closest('tr');
+        if (row) {
+            row.remove();
         }
-    });
+    }
+});
+
+// Save Changes Logic
+document.getElementById('editExpenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (currentRow) {
+        const expenseType = document.getElementById('editExpenseType').value;
+        const expenseAmount = document.getElementById('editExpenseAmount').value;
+
+        if (expenseType && expenseAmount) {
+            currentRow.cells[0].textContent = expenseType;
+            currentRow.cells[1].textContent = expenseAmount;
+            $('#editExpenseModal').modal('hide');
+            currentRow = null; // Reset after saving changes
+        }
+    }
 });
